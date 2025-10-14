@@ -24,7 +24,7 @@ export function useCategory(id: string){ //retorna apenas os IDs
 
 export function userCreateCategory(){
     return useMutation<CategoryDTO, Error, Omit<CategoryDTO, 'id'>>({//A informação ID será omitida caso de um erro
-        mutationFn: (category: Omit<CategoryDTO, 'id'>) => CateogryService.create(category);
+        mutationFn: (category: Omit<CategoryDTO, 'id'>) => CateogryService.create(category)
     });
 }
 
