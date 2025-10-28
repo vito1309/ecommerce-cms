@@ -38,8 +38,8 @@ export function CategoryLayout() {
 
 
             <div>
-                <CategoryDataTable></CategoryDataTable>
             </div>
+                <CategoryDataTable></CategoryDataTable>
 
             </div>
 
