@@ -10,20 +10,25 @@ import {
 import { Button } from "../ui/button";
 import { useLocation, useNavigate } from "react-router-dom";
 import type { ReactNode } from "react";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@radix-ui/react-tooltip";
+import { EditIcon } from "lucide-react";
 
 type SideBarFormProps = {
   title: string;
   children: ReactNode;
-  onSave: () => void
-
+  onSave?: () => void;
+  loading: boolean;
+  onDelete: boolean; 
 }
 
 export function SidebarForm({ 
     title,
     children,
     onSave,
+    loading,
+    onDelete
 }: SideBarFormProps) {
-    const navegate = useNavigate();
+    const navigate = useNavigate();
     const location = useLocation();
 
     function handleCloseForm(open: boolean) {
@@ -42,12 +47,16 @@ export function SidebarForm({
           </SheetDescription>
         </SheetHeader>
 
+          <div className="px-8">
             {children}
+          </div>
 
         <SheetFooter>
           <div className="flex flex-row gap-1">
             <Button
-            onClick={onSave}>
+            type="button"
+            onClick={onSave}
+            disabled={loading}>
                 Salvar
             </Button>
 
@@ -61,5 +70,21 @@ export function SidebarForm({
         </SheetFooter>
       </SheetContent>
     </Sheet>
-  );
+</div>
+
+        <Tooltip>
+            <TooltipTrigger asChild>
+                <Button 
+                    variant="outline"
+                    size="icon"
+                    onClick={NavigateToId}
+                >
+                    <EditIcon />
+                </Button>
+            </TooltipTrigger>
+            <TooltipContent>
+                <p>Editar/remover registro</p>
+            </TooltipContent>
+        </Tooltip>
+
 }
