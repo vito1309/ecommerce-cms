@@ -9,9 +9,7 @@ type DataTableAcionsProps = {
 
 
 
-export function DataTableActions({itemId
-
-}: DataTableAcionsProps)    {
+export function DataTableActions({itemId}: DataTableAcionsProps)    {
 
     const location = useLocation();
     const navigate = useNavigate();

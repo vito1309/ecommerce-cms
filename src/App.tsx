@@ -1,22 +1,44 @@
-import { Routes, Route, Navigate } from "react-router-dom"
+import { Routes,Route } from "react-router-dom"
+import { ToastContainer } from 'react-toastify'
 import { CategoryLayout } from "./cases/categories/components/data-table/category-layout"
 import { CategoryForm } from "./cases/categories/components/category-form"
-import { ToastContainer } from 'react-toastify'
+import { BrandLayout } from "./cases/brands/components/data-table/brand-layout"
+import { BrandForm } from "./cases/brands/components/brand-form.tsx"
+import { ProductLayout } from "./cases/products/components/product-layout"
+import { ProductForm } from "./cases/products/components/product-form"
+import { SidebarProvider } from "./components/ui/sidebar.tsx"
+import { AppSidebar } from "./components/layout/app-sidebar.tsx"
 
 function App() {
  
   return (
    <div className="wrapper">
 
-    <main>
-      <Routes>
-        <Route path="/" element={<Navigate to="/categories" replace />} />
-        <Route path="/categories" element= { <CategoryLayout /> } />
-        <Route path="/categories/new" element={ <CategoryForm /> } />
-        <Route path="/categories/:id" element={ <CategoryForm /> } />
 
-      </Routes>
+    <SidebarProvider>
+      <AppSidebar />
+
+    <main>
+        <Routes>
+          
+          <Route path="/categories" element={ <CategoryLayout />}>
+            <Route path="new" element={ <CategoryForm />} />
+            <Route path=":id" element={ <CategoryForm />} />
+          </Route>
+
+            <Route path="/brands" element={ <BrandLayout /> }>
+              <Route path="new" element={<BrandForm />} />
+              <Route path=":id" element={<BrandForm />} />
+            </Route>
+
+            <Route path="/products" element={ <ProductLayout /> }>
+              <Route path="new" element={<ProductForm />} />
+              <Route path=":id" element={<ProductForm />} />
+            </Route>
+          
+        </Routes>
     </main>
+    </SidebarProvider>
 
     <ToastContainer>
 

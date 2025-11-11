@@ -10,7 +10,7 @@ export function useCategories(){ //hook que retorna todos os dados das categorie
     });
 }
 
-export function useBrand(id: string){ //retorna apenas os IDs
+export function useBrands(id: string){ //retorna apenas os IDs
     return useQuery<BrandDTO>({
         queryKey:['BrandDTO', id],
         queryFn: () => BrandService.getById(id),
