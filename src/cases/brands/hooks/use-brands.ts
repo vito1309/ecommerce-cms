@@ -2,15 +2,14 @@ import { useMutation, useQuery } from "@tanstack/react-query";
 import type { BrandDTO } from "../dtos/brand.dto";
 import { BrandService } from "../services/brand.service";
 
-
-export function useCategories(){ //hook que retorna todos os dados das categories
+export function useBrands(){ //hook que retorna todos os dados das brands
     return useQuery<BrandDTO[]>({ //o hook retorna o estado, além dos dados, coisa que a função sozinha não faz
         queryKey: ['brands'], 
         queryFn: BrandService.list 
     });
 }
 
-export function useBrands(id: string){ //retorna apenas os IDs
+export function useBrand(id: string){ //retorna apenas os IDs
     return useQuery<BrandDTO>({
         queryKey:['BrandDTO', id],
         queryFn: () => BrandService.getById(id),

@@ -1,18 +1,26 @@
 import { DataTable } from "@/components/ui/data-table";
-import { categoryColumns } from "./brand-columns";
-import { useCategories } from "../../hooks/use-brands";
+import { brandColumns } from "./brand-columns";
+import { useBrands } from "../../hooks/use-brands";
 
-export function CategoryDataTable() {
+type BrandDataTableProps = {
+  searchTerm?: string;
+}
+export function BrandDataTable({
+  searchTerm
+}:BrandDataTableProps) {
 
-    const{data:categories, isLoading} = useCategories();
+    const {data: brands, isLoading} = useBrands();
 
-    return(
+    return (
         <div>
-            {isLoading ? (
-                <p>Carregando</p>
+            { isLoading ? (
+                <p>Carregando...</p>
             ) : (
-                <DataTable columns={categoryColumns} data={categories!}/>
+                <DataTable columns={brandColumns} 
+                    data={brands!.filter((p) => p.name.toLowerCase().includes(searchTerm?.toLowerCase() ?? ''))}  
+                />
             )}
         </div>
+
     )
 }
