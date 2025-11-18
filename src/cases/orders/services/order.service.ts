@@ -31,7 +31,3 @@ export const orderService = {
     }
 
 }
-
-
-
-//atributo(): valor
